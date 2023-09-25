@@ -33,5 +33,3 @@ build/
 .idea/
 ### VS Code ###
 .vscode/
-### ApplicationProperties
-src/main/resources/application.properties
