@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pools")
+@RequestMapping("piscine")
 public class PoolsController {
     @Autowired
     private PoolsService poolsService;
@@ -22,7 +22,7 @@ public class PoolsController {
     public Iterable<Pools>getPools(){
         return poolsService.getPools();
     }
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public Pools updatePools(@PathVariable("id") final int id, @RequestBody Pools pools){
         Optional<Pools> pool = poolsService.getPoolsById(id);
         if (pool.isPresent()){
