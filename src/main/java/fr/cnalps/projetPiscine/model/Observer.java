@@ -3,7 +3,7 @@ package fr.cnalps.projetPiscine.model;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class Observer {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
