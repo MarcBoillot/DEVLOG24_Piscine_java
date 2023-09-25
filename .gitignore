@@ -30,6 +30,6 @@ build/
 !**/src/test/**/build/
 
 ### IntelliJ ###
-../.idea
+.idea/
 ### VS Code ###
 .vscode/
