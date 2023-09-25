@@ -14,11 +14,11 @@ public class PoolsService {
     @Autowired
     private PoolsRepository poolsRepository;
 
-    public Optional<Pools> getPiscinesById(final int id) {return poolsRepository.findById(id);}
+    public Optional<Pools> getPoolsById(final int id) {return poolsRepository.findById(id);}
 
-    public Iterable<Pools> getPiscines() {return poolsRepository.findAll();}
+    public Iterable<Pools> getPools() {return poolsRepository.findAll();}
 
-    public void deletePiscine(final int id) {poolsRepository.deleteById(id);}
+    public void deletePool(final int id) {poolsRepository.deleteById(id);}
 
     public Pools savePool(Pools pool) {
         return poolsRepository.save(pool);
