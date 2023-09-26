@@ -70,4 +70,15 @@ public class ObserverController {
     public Observer updateObserver(@PathVariable int id, @RequestBody Observer observer) {
         return service.updateObserver(id, observer);
     }
+
+    /**
+     * Deletes a specific Observer object by its ID.
+     *
+     * @param id The ID of the Observer object.
+     */
+    @DeleteMapping("/{id}")
+    public void deleteObserver(@PathVariable int id) {
+        service.deleteObserver(id);
+    }
+
 }

@@ -70,4 +70,16 @@ public class ObserverService {
         }
         return null;
     }
+
+    /**
+     * Deletes a specific Observer object by its ID.
+     *
+     * @param id The ID of the Observer to be deleted.
+     */
+    public void deleteObserver(int id) {
+        if (observerRepository.existsById(id)) {
+            observerRepository.deleteById(id);
+        }
+    }
+
 }
