@@ -1,5 +1,6 @@
 package fr.cnalps.projetPiscine.service;
 
+import fr.cnalps.projetPiscine.model.Category;
 import fr.cnalps.projetPiscine.repository.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,4 +15,7 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    public Category createCategory(Category category) {
+        return categoryRepository.save(category);
+    }
 }

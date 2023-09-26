@@ -4,23 +4,19 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class Category {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Getter
-    @Setter
     @Column(unique = true, nullable = false, length = 50)
     private String title;
 
-    @Getter
-    @Setter
     @Column(nullable = false)
-    private String decription;
+    private String description;
 
 }
