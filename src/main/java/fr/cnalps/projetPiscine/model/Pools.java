@@ -1,9 +1,8 @@
 package fr.cnalps.projetPiscine.model;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.text.SimpleDateFormat;
@@ -22,6 +21,8 @@ public class Pools {
     private String name;
     private String town;
     private Date date;
+    @OneToMany
+    private List<Candidate> candidates = new ArrayList<Candidate>();
 
     /**
      * Constructeur de piscines
@@ -43,4 +44,5 @@ public class Pools {
     public Pools(){
 
     }
+
 }

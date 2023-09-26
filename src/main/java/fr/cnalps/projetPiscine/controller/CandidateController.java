@@ -32,12 +32,12 @@ public class CandidateController {
     @DeleteMapping(value = "/delete")
     public @ResponseBody String removeCandidate(@RequestBody Candidate candidate){
         candidateService.delete(candidate);
-        return "Succesfully deleted";
+        return "Successfully deleted";
     }
 
     @PutMapping(value = "/modify")
     public @ResponseBody String modifyCandidate(@RequestBody Candidate candidate){
         candidateService.update(candidate);
-        return "succesfully modify";
+        return "successfully modify";
     }
 }
