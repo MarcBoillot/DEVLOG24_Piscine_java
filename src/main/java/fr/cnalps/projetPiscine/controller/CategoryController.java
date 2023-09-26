@@ -32,4 +32,9 @@ public class CategoryController {
     public Category getObserverById (@PathVariable(name = "id") int id) {
         return this.service.getCategoryById(id);
     }
+
+    @PutMapping("/{id}")
+    public Category updateObserver(@PathVariable int id, @RequestBody Category category) {
+        return service.updateCategory(id, category);
+    }
 }

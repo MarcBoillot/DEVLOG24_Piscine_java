@@ -29,4 +29,12 @@ public class CategoryService {
     public Category getCategoryById(int id) {
         return categoryRepository.findById(id).orElse(null);
     }
+
+    public Category updateCategory(int id, Category category) {
+        if (categoryRepository.existsById(id)) {
+            category.setId(id);
+            return categoryRepository.save(category);
+        }
+        return null;
+    }
 }
