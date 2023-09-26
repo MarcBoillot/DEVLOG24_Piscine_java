@@ -60,7 +60,10 @@ public class PoolsController {
         return "Update successful";
     }
 
-
+    /**
+     * Fonction de suppréssion de piscines
+     * @param id de la piscine
+     */
     @DeleteMapping("/{id}")
     public @ResponseBody void deletePool(@PathVariable(value = "id") int id) {
         poolsService.deletePool(id);
