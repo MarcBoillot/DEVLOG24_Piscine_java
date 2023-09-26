@@ -5,7 +5,6 @@ import fr.cnalps.projetPiscine.repository.PoolsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
-import java.util.Scanner;
 
 /**
  * Classe service de piscines
@@ -44,7 +43,7 @@ public class PoolsService {
      * Fonction de suppression de piscine
      * @param pools piscines
      */
-    public void deletePool(Pools pools) {poolsRepository.delete(pools);}
+    public void deletePool(int pools) {poolsRepository.deleteById(pools);}
 
     /**
      * Fonction pour mettre à jour les données d'une piscine

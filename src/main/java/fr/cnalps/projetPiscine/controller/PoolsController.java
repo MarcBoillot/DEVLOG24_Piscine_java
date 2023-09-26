@@ -44,7 +44,7 @@ public class PoolsController {
      * @param id id de la piscine
      * @return les données de la piscine
      */
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public @ResponseBody Optional<Pools> getPoolsById(@PathVariable(value = "id") int id){
         return poolsService.getPoolsById(id);
     }
@@ -54,15 +54,15 @@ public class PoolsController {
      * @param pool la piscine
      * @return un message de confirmation
      */
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public @ResponseBody String updatePool(@RequestBody Pools pool){
         poolsService.updatePool(pool);
         return "Update successful";
     }
 
 
-    @DeleteMapping("{id}")
-    public @ResponseBody void deletePool(@RequestBody Pools pools) {
-        poolsService.deletePool(pools);
+    @DeleteMapping("/{id}")
+    public @ResponseBody void deletePool(@PathVariable(value = "id") int id) {
+        poolsService.deletePool(id);
     }
 }
