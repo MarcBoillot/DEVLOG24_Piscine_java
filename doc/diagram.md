@@ -65,17 +65,17 @@ classDiagram
     class ObserverRepository
     ObserverRepository : +findAll()
     ObserverRepository: +findById(int id)
-    ObserverRepository: +save(Candodate candidate)
-    ObserverRepository: +delete(Candidate candidate)
-    ObserverRepository: +update(Candidate candidate)
+    ObserverRepository: +save(Observer observer)
+    ObserverRepository: +delete(Candidate observer)
+    ObserverRepository: +update(Observer observer)
 
     class CrudRepository
     <<interface>> CrudRepository
     CrudRepository : +findAll()
     CrudRepository: +findById(int id)
-    CrudRepository: +save(Candodate candidate)
-    CrudRepository: +delete(Candidate candidate)
-    CrudRepository: +update(Candidate candidate)
+    CrudRepository: +save(Observer observer)
+    CrudRepository: +delete(Observer observer)
+    CrudRepository: +update(Observer observer)
 
 ```
 # Pools class
@@ -105,4 +105,44 @@ pools  : +Date date
     class poolsRepository
     <<interface>> poolsRepository
     poolsRepository : extends CrudRepository
+```
+
+# CATEGORY CLASS
+- It's the complete Category class for project
+```mermaid
+classDiagram
+    class Category
+    Category : +int id
+    Category : +String title
+    Category : +String description
+    
+    class CategoryController
+    CategoryController: +createCategory(Category category)
+    CategoryController: +getCategoryById(int id)
+    CategoryController: +getAllCategory()
+    CategoryController: +updateCategory(int id, Category category)
+    CategoryController: +deleteCategory(int id)
+    
+    class CategoryService
+    CategoryService: +createCategory(Category category)
+    CategoryService: +getCategoryById(int id)
+    CategoryService: +getAllCategory()
+    CategoryService: +updateCategory(int id, Category category)
+    CategoryService: +deleteCategory(int id)
+
+    class CategoryRepository
+    CategoryRepository : +findAll()
+    CategoryRepository: +findById(int id)
+    CategoryRepository: +save(Category category)
+    CategoryRepository: +delete(Category category)
+    CategoryRepository: +update(Category category)
+
+    class CrudRepository
+    <<interface>> CrudRepository
+    CrudRepository : +findAll()
+    CrudRepository: +findById(int id)
+    CrudRepository: +save(Category category)
+    CrudRepository: +delete(Category category)
+    CrudRepository: +update(Category category)
+
 ```
