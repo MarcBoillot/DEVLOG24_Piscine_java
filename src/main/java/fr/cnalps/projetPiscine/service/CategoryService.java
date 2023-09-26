@@ -37,4 +37,10 @@ public class CategoryService {
         }
         return null;
     }
+
+    public void deleteObserver(int id) {
+        if (categoryRepository.existsById(id)) {
+            categoryRepository.deleteById(id);
+        }
+    }
 }

@@ -37,4 +37,9 @@ public class CategoryController {
     public Category updateObserver(@PathVariable int id, @RequestBody Category category) {
         return service.updateCategory(id, category);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteObserver(@PathVariable int id) {
+        service.deleteObserver(id);
+    }
 }
