@@ -29,9 +29,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### IntelliJ ###
-.idea/
 ### VS Code ###
 .vscode/
-### ApplicationProperties
+### application.properties ###
 src/main/resources/application.properties
