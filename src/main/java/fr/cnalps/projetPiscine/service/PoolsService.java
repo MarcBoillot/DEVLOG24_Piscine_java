@@ -19,6 +19,15 @@ public class PoolsService {
     private PoolsRepository poolsRepository;
 
     /**
+     * Fonction de création d'une piscine
+     * @param pool la piscine
+     * @return les nouvelles données
+     */
+    public Pools createPool(Pools pool) {
+        return poolsRepository.save(pool);
+    }
+
+    /**
      * Fonction afficher les piscines selon leur id
      * @param id id de la piscine
      * @return la piscine avec l'id dorrecpondant
@@ -32,17 +41,16 @@ public class PoolsService {
     public Iterable<Pools> getPools() {return poolsRepository.findAll();}
 
     /**
-     * Fonction pour supprimer une piscine
-     * @param id id de la piscine à supprimer
+     * Fonction de suppression de piscine
+     * @param pools piscines
      */
-    public void deletePool(final int id) {poolsRepository.deleteById(id);}
+    public void deletePool(Pools pools) {poolsRepository.delete(pools);}
 
     /**
-     * Fonction de mise à jour d'une piscine
+     * Fonction pour mettre à jour les données d'une piscine
      * @param pool la piscine
-     * @return les nouvelles données
      */
-    public Pools savePool(Pools pool) {
-        return poolsRepository.save(pool);
+    public void updatePool(Pools pool){
+        poolsRepository.save(pool);
     }
 }

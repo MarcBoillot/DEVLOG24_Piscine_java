@@ -12,7 +12,7 @@ import java.util.Optional;
  * Controller de piscines
  */
 @RestController
-@RequestMapping("piscine")
+@RequestMapping("pools")
 public class PoolsController {
     /**
      * Instanciation du service
@@ -27,7 +27,7 @@ public class PoolsController {
      */
     @PostMapping
     public Pools createPool(@RequestBody Pools pool){
-        return poolsService.savePool(pool);
+        return poolsService.createPool(pool);
     }
 
     /**
@@ -40,39 +40,29 @@ public class PoolsController {
     }
 
     /**
-     * Fonction pour mettre à jour les données des piscines
-     * @param id l'id de la piscine
-     * @param pools les piscines
-     * @return les nouvelles données si existantes sinon rien
+     * Fonction pour trouver les piscines par leurs id
+     * @param id id de la piscine
+     * @return les données de la piscine
      */
-    @PutMapping("{id}")
-    public Pools updatePools(@PathVariable("id") final int id, @RequestBody Pools pools){
-        Optional<Pools> pool = poolsService.getPoolsById(id);
-        if (pool.isPresent()){
-            Pools currentPool = pool.get();
-            String name = pools.getName();
-            if (name != null) {
-                currentPool.setName(name);
-            }
-            String town = pools.getTown();
-            if (town != null){
-                currentPool.setTown(town);
-            }
-            Date date = pools.getDate();
-            if (date != null){
-                currentPool.setDate(date);
-            }
-            return currentPool;
-        }
-        else {
-            return null;
-        }
+    @GetMapping("{id}")
+    public @ResponseBody Optional<Pools> getPoolsById(@PathVariable(value = "id") int id){
+        return poolsService.getPoolsById(id);
     }
 
     /**
-     * Fonction qui permet de supprimer une piscine
-     * @param id l'id de la piscine
+     * Fonction pour mettre à jour une piscine
+     * @param pool la piscine
+     * @return un message de confirmation
      */
-    @DeleteMapping
-    public void deletePool(@PathVariable("id") final int id) {poolsService.deletePool(id);}
+    @PutMapping("{id}")
+    public @ResponseBody String updatePool(@RequestBody Pools pool){
+        poolsService.updatePool(pool);
+        return "Update successful";
+    }
+
+
+    @DeleteMapping("{id}")
+    public @ResponseBody void deletePool(@RequestBody Pools pools) {
+        poolsService.deletePool(pools);
+    }
 }
