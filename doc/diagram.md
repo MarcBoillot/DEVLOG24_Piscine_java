@@ -49,8 +49,11 @@ classDiagram
     observer : +String email
     
     class ObserverController
-    ObserverController : +getAllObserver()
-    ObserverController : +getObserverById(int id)
+    ObserverController: +createObserver(Observer observer)
+    ObserverController: +getObserverById(int id)
+    ObserverController: +getAllObserver()
+    ObserverController: +updateObserver(int id, Observer observer)
+    ObserverController: +deleteObserver(int id)
     
     class ObserverService
     ObserverService: +createObserver(Observer observer)

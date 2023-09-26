@@ -38,6 +38,15 @@ public class ObserverService {
     }
 
     /**
+     * Retrieves all Observer object from the database.
+     *
+     * @return A list of all Observer object.
+     */
+    public List<Observer> getAllObserver() {
+        return (List<Observer>) observerRepository.findAll();
+    }
+
+    /**
      * Retrieves a specific Observer object by its ID.
      *
      * @param id The ID of the desired Observer.
@@ -45,15 +54,6 @@ public class ObserverService {
      */
     public Observer getObserverById(int id) {
         return observerRepository.findById(id).orElse(null);
-    }
-
-    /**
-     * Retrieves all Observer object from the database.
-     *
-     * @return A list of all Observer object.
-     */
-    public List<Observer> getAllObserver() {
-        return (List<Observer>) observerRepository.findAll();
     }
 
     /**
@@ -69,14 +69,5 @@ public class ObserverService {
             return observerRepository.save(observer);
         }
         return null;
-    }
-
-    /**
-     * Deletes a specific Observer object by its ID.
-     *
-     * @param id The ID of the Observer to be deleted.
-     */
-    public void deleteObserver(int id) {
-        observerRepository.deleteById(id);
     }
 }

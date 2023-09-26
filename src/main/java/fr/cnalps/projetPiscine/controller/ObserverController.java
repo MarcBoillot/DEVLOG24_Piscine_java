@@ -13,7 +13,7 @@ import java.util.List;
  * Provides endpoints for retrieving all Observers and getting a specific Observer by ID.
  */
 @RestController
-@RequestMapping(path="/piscine")
+@RequestMapping(path="/observer")
 public class ObserverController {
     @Autowired
     private final ObserverService service;
@@ -28,25 +28,46 @@ public class ObserverController {
     }
 
     /**
-     * Retrieves all Observer entities from the database.
+     * Creates a new Observer object.
      *
-     * @return List of all Observer entities.
+     * @param observer The Observer object to be created.
+     * @return The created Observer object.
      */
-    @GetMapping("/observer")
+    @PostMapping
+    public Observer createObserver(@RequestBody Observer observer) {
+        return service.createObserver(observer);
+    }
+
+    /**
+     * Retrieves all Observer object from the database.
+     *
+     * @return List of all Observer object.
+     */
+    @GetMapping
     public List<Observer> getAllObserver(){
-        List<Observer> observerList = this.service.getAllObserver();
-        return observerList ;
+        return this.service.getAllObserver();
     }
 
     /**
      * Retrieves a specific Observer by its ID.
      *
-     * @param id The ID of the Observer entity.
+     * @param id The ID of the Observer object.
      * @return The Observer entity matching the provided ID.
      */
-    @GetMapping("/observer/{id}")
+    @GetMapping("/{id}")
     public Observer getObserverById (@PathVariable(name = "id") int id) {
         return this.service.getObserverById(id);
     }
 
+    /**
+     * Updates a specific Observer object by its ID.
+     *
+     * @param id The ID of the Observer object.
+     * @param observer The updated Observer object.
+     * @return The updated Observer object.
+     */
+    @PutMapping("/{id}")
+    public Observer updateObserver(@PathVariable int id, @RequestBody Observer observer) {
+        return service.updateObserver(id, observer);
+    }
 }
