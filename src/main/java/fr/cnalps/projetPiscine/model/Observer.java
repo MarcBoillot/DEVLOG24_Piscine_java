@@ -9,15 +9,19 @@ import jakarta.persistence.*;
 @Entity
 public class Observer {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String lastName;
+    @Column(nullable = false, length = 100)
+    private String lastname;
 
-    private String firstName;
+    @Column(nullable = false, length = 100)
+    private String firstname;
 
+    @Column(nullable = false, length = 100)
     private String society;
 
+    @Column(nullable = false, length = 100)
     private String email;
 
     /**
@@ -55,7 +59,7 @@ public class Observer {
      * @return the Observer's name.
      */
     public String getName() {
-        return lastName;
+        return lastname;
     }
 
     /**
@@ -64,7 +68,7 @@ public class Observer {
      * @param lastName the name to set.
      */
     public void setName(String lastName) {
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
 
     /**
@@ -73,7 +77,7 @@ public class Observer {
      * @return the Observer's first name.
      */
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
 
     /**
@@ -82,7 +86,7 @@ public class Observer {
      * @param firstName the first name to set.
      */
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstname = firstName;
     }
 
     /**
@@ -143,6 +147,6 @@ public class Observer {
      * Enum representing the possible status values for an Observer: 'administrateur' and 'observateur'.
      */
     public enum Status {
-        administrateur, observateur;
+        administrateur, observateur
     }
 }
