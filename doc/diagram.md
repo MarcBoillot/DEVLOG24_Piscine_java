@@ -78,3 +78,31 @@ classDiagram
     CrudRepository: +update(Candidate candidate)
 
 ```
+# Pools class
+```mermaid
+
+classDiagram
+class pools
+pools : +int id
+pools : +String name
+pools  : +String town
+pools  : +Date date
+
+    class PoolsController
+    PoolsController : +createPool()
+    PoolsController : +getPools()
+    PoolsController : +getPoolsById(id)
+    PoolsController : +updatePool(Pools, pool)
+    PoolsController : +deletePool(id)
+    
+    class poolsServices
+    poolsServices : +createPool(Pools pool)
+    poolsServices: +getPoolsById(int id)
+    poolsServices: +getPools()
+    poolsServices: +delete(pool)
+    poolsServices: +update(pools pool)
+    
+    class poolsRepository
+    <<interface>> poolsRepository
+    poolsRepository : extends CrudRepository
+```
