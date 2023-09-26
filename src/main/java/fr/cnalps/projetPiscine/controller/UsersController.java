@@ -1,7 +1,7 @@
 package fr.cnalps.projetPiscine.controller;
 
-import fr.cnalps.projetPiscine.model.Observer;
-import fr.cnalps.projetPiscine.service.ObserverService;
+import fr.cnalps.projetPiscine.model.Users;
+import fr.cnalps.projetPiscine.service.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,28 +14,22 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(path="/observer")
-public class ObserverController {
+public class UsersController {
     @Autowired
-    private final ObserverService service;
+    private final UsersService service;
 
     /**
      * Constructor for ObserverController.
      *
      * @param service The ObserverService to handle business logic related to Observer entities.
      */
-    public ObserverController(ObserverService service){
+    public UsersController(UsersService service){
         this.service = service;
     }
 
-    /**
-     * Creates a new Observer object.
-     *
-     * @param observer The Observer object to be created.
-     * @return The created Observer object.
-     */
     @PostMapping
-    public Observer createObserver(@RequestBody Observer observer) {
-        return service.createObserver(observer);
+    public Users createUser(@RequestBody Users user) {
+        return service.createUser(user);
     }
 
     /**
@@ -44,8 +38,8 @@ public class ObserverController {
      * @return List of all Observer object.
      */
     @GetMapping
-    public List<Observer> getAllObserver(){
-        return this.service.getAllObserver();
+    public List<Users> getAllUsers(){
+        return this.service.getAllUsers();
     }
 
     /**
@@ -55,8 +49,8 @@ public class ObserverController {
      * @return The Observer entity matching the provided ID.
      */
     @GetMapping("/{id}")
-    public Observer getObserverById (@PathVariable(name = "id") int id) {
-        return this.service.getObserverById(id);
+    public Users getUsersById (@PathVariable(name = "id") int id) {
+        return this.service.getUsersById(id);
     }
 
     /**
@@ -67,8 +61,8 @@ public class ObserverController {
      * @return The updated Observer object.
      */
     @PutMapping("/{id}")
-    public Observer updateObserver(@PathVariable int id, @RequestBody Observer observer) {
-        return service.updateObserver(id, observer);
+    public Users updateUsers(@PathVariable int id, @RequestBody Users observer) {
+        return service.updateUsers(id, observer);
     }
 
     /**
@@ -77,8 +71,8 @@ public class ObserverController {
      * @param id The ID of the Observer object.
      */
     @DeleteMapping("/{id}")
-    public void deleteObserver(@PathVariable int id) {
-        service.deleteObserver(id);
+    public void deleteUsers(@PathVariable int id) {
+        service.deleteUsers(id);
     }
 
 }

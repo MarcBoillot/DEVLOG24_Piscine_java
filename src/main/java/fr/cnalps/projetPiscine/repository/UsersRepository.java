@@ -2,9 +2,9 @@ package fr.cnalps.projetPiscine.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import fr.cnalps.projetPiscine.model.Observer;
+import fr.cnalps.projetPiscine.model.Users;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ObserverRepository extends CrudRepository<Observer, Integer>{
+public interface UsersRepository extends CrudRepository<Users, Integer>{
 }

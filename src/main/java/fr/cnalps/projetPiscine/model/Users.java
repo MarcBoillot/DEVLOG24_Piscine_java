@@ -7,7 +7,7 @@ import jakarta.persistence.*;
  * This object has attributes like name, firstName, society, email, and a status which can be either 'administrateur' or 'observateur'.
  */
 @Entity
-public class Observer {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

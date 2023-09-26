@@ -20,22 +20,17 @@ public class Pools {
     private int id;
     private String name;
     private String town;
-    private Date date;
+    private Date startdate;
+    private Date enddate;
     @OneToMany
     private List<Candidate> candidates = new ArrayList<Candidate>();
 
-    /**
-     * Constructeur de piscines
-     * @param id id de a piscine
-     * @param name nom de la piscine
-     * @param town ville de la piscine
-     * @param date date de la piscine ATTENTION actuellement au format yyyy/MM/dd
-     */
-    public Pools(int id, String name, String town, Date date) {
+    public Pools(int id, String name, String town, Date startdate, Date enddate) {
         this.id = id;
         this.name = name;
         this.town = town;
-        this.date = date;
+        this.startdate = startdate;
+        this.enddate = enddate;
     }
 
     /**

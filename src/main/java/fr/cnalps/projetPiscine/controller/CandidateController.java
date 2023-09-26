@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/candidate")
+@RequestMapping(path="candidate")
 public class CandidateController {
     @Autowired
     private CandidateService candidateService;
 
-    @GetMapping("/all")
+    @GetMapping
     public @ResponseBody Iterable<Candidate> getAllCandidates(){
         return candidateService.findAll();
     }
@@ -24,7 +24,7 @@ public class CandidateController {
         return candidateService.findById(id);
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping
     public @ResponseBody Candidate createCandidate(@RequestBody Candidate candidate){
         return candidateService.save(candidate);
     }

@@ -1,7 +1,7 @@
 package fr.cnalps.projetPiscine.service;
 
-import fr.cnalps.projetPiscine.model.Observer;
-import fr.cnalps.projetPiscine.repository.ObserverRepository;
+import fr.cnalps.projetPiscine.model.Users;
+import fr.cnalps.projetPiscine.repository.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +13,9 @@ import java.util.List;
  * Provides methods for CRUD operations on Observer object.
  */
 @Service
-public class ObserverService {
+public class UsersService {
 
-    private final ObserverRepository observerRepository;
+    private final UsersRepository usersRepository;
 
     /**
      * Constructor for ObserverService.
@@ -23,8 +23,8 @@ public class ObserverService {
      * @param observerRepository The repository for accessing Observer object from the database.
      */
     @Autowired
-    public ObserverService(ObserverRepository observerRepository) {
-        this.observerRepository = observerRepository;
+    public UsersService(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
     }
 
     /**
@@ -33,8 +33,8 @@ public class ObserverService {
      * @param observer The Observer object to be created.
      * @return The created Observer object.
      */
-    public Observer createObserver(Observer observer) {
-        return observerRepository.save(observer);
+    public Users createUser(Users observer) {
+        return usersRepository.save(observer);
     }
 
     /**
@@ -42,8 +42,8 @@ public class ObserverService {
      *
      * @return A list of all Observer object.
      */
-    public List<Observer> getAllObserver() {
-        return (List<Observer>) observerRepository.findAll();
+    public List<Users> getAllUsers() {
+        return (List<Users>) usersRepository.findAll();
     }
 
     /**
@@ -52,8 +52,8 @@ public class ObserverService {
      * @param id The ID of the desired Observer.
      * @return The Observer object with the given ID or null if not found.
      */
-    public Observer getObserverById(int id) {
-        return observerRepository.findById(id).orElse(null);
+    public Users getUsersById(int id) {
+        return usersRepository.findById(id).orElse(null);
     }
 
     /**
@@ -63,10 +63,10 @@ public class ObserverService {
      * @param observer The updated Observer object.
      * @return The updated Observer object or null if not found.
      */
-    public Observer updateObserver(int id, Observer observer) {
-        if (observerRepository.existsById(id)) {
+    public Users updateUsers(int id, Users observer) {
+        if (usersRepository.existsById(id)) {
             observer.setId(id);
-            return observerRepository.save(observer);
+            return usersRepository.save(observer);
         }
         return null;
     }
@@ -76,9 +76,9 @@ public class ObserverService {
      *
      * @param id The ID of the Observer to be deleted.
      */
-    public void deleteObserver(int id) {
-        if (observerRepository.existsById(id)) {
-            observerRepository.deleteById(id);
+    public void deleteUsers(int id) {
+        if (usersRepository.existsById(id)) {
+            usersRepository.deleteById(id);
         }
     }
 
