@@ -32,4 +32,9 @@ public class CriteriaController {
     public Criteria getCriteriaById (@PathVariable(name = "id") int id) {
         return this.service.getCriteriaById(id);
     }
+
+    @PutMapping("/{id}")
+    public Criteria updateCriteria(@PathVariable int id, @RequestBody Criteria criteria) {
+        return service.updateCriteria(id, criteria);
+    }
 }

@@ -29,4 +29,12 @@ public class CriteriaService {
     public Criteria getCriteriaById(int id) {
         return criteriaRepository.findById(id).orElse(null);
     }
+
+    public Criteria updateCriteria(int id, Criteria criteria) {
+        if (criteriaRepository.existsById(id)) {
+            criteria.setId(id);
+            return criteriaRepository.save(criteria);
+        }
+        return null;
+    }
 }
