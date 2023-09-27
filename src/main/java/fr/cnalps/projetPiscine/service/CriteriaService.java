@@ -21,4 +21,12 @@ public class CriteriaService {
     public Criteria createCriteria (Criteria criteria){
         return criteriaRepository.save(criteria);
     }
+
+    public List<Criteria> getAllCriteria() {
+        return (List<Criteria>) criteriaRepository.findAll();
+    }
+
+    public Criteria getCriteriaById(int id) {
+        return criteriaRepository.findById(id).orElse(null);
+    }
 }
