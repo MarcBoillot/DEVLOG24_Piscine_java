@@ -146,7 +146,7 @@ classDiagram
     CrudRepository: +update(Category category)
 ```
 
-# CATEGORY ENTITIES
+# CRITERIA ENTITIES
 - It's the complete Criteria class for project
 ```mermaid
 classDiagram
