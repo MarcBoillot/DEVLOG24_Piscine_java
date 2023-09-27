@@ -31,4 +31,12 @@ public class Criteria {
      * A brief description of the category.
      */
     private String description;
+
+    /**
+     * Establishes a many-to-one relationship between this criteria and a category.
+     * The foreign key column used in the database table for this relationship is 'category_id'.
+     */
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }
