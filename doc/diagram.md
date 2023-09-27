@@ -144,5 +144,43 @@ classDiagram
     CrudRepository: +save(Category category)
     CrudRepository: +delete(Category category)
     CrudRepository: +update(Category category)
+```
 
+# CRITERIA ENTITIES
+- It's the complete Criteria class for project
+```mermaid
+classDiagram
+    class Criteria
+    Criteria : +int id
+    Criteria : +String title
+    Criteria : +String description
+    
+    class CriteriaController
+    CriteriaController: +createCriteria(Criteria riteria)
+    CriteriaController: +getCriteriaById(int id)
+    CriteriaController: +getAllCriteria()
+    CriteriaController: +updateCriteria(int id, Criteria criteria)
+    CriteriaController: +deleteCriteria(int id)
+    
+    class CriteriaService
+    CriteriaService: +createCriteria(Criteria criteria)
+    CriteriaService: +getCriteriaById(int id)
+    CriteriaService: +getAllCriteria()
+    CriteriaService: +updateCriteria(int id, Criteria criteria)
+    CriteriaService: +deleteCriteria(int id)
+
+    class CriteriaRepository
+    CriteriaRepository : +findAll()
+    CriteriaRepository: +findById(int id)
+    CriteriaRepository: +save(Criteria criteria)
+    CriteriaRepository: +delete(Criteria criteria)
+    CriteriaRepository: +update(Criteria criteria)
+
+    class CrudRepository
+    <<interface>> CrudRepository
+    CrudRepository : +findAll()
+    CrudRepository: +findById(int id)
+    CrudRepository: +save(Criteria criteria)
+    CrudRepository: +delete(Criteria criteria)
+    CrudRepository: +update(Criteria criteria)
 ```
