@@ -37,4 +37,10 @@ public class CriteriaService {
         }
         return null;
     }
+
+    public void deleteCriteria(int id) {
+        if (criteriaRepository.existsById(id)) {
+            criteriaRepository.deleteById(id);
+        }
+    }
 }

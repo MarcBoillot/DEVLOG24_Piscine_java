@@ -37,4 +37,9 @@ public class CriteriaController {
     public Criteria updateCriteria(@PathVariable int id, @RequestBody Criteria criteria) {
         return service.updateCriteria(id, criteria);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteCriteria(@PathVariable int id) {
+        service.deleteCriteria(id);
+    }
 }
