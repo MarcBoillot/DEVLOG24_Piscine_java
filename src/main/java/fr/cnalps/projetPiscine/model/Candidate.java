@@ -24,6 +24,12 @@ public class Candidate {
     @Column(nullable = false, length = 100)
     private String email;
 
+    @ManyToMany
+    @JoinTable (name = "poolsHasCandidates",
+            joinColumns = @JoinColumn(name = "candidate_id"),
+            inverseJoinColumns = @JoinColumn(name = "pools_id") )
+    private List<Pools> candidateInPools;
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -40,10 +46,5 @@ public class Candidate {
         this.email = email;
     }
 
-    @ManyToMany(mappedBy = "Candidates")
-    private List<Pools> pools = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "pool_id")
-    private Pools pool;
 }

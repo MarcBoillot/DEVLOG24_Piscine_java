@@ -3,6 +3,7 @@ import java.util.*;
 
 import fr.cnalps.projetPiscine.repository.PoolsRepository;
 import fr.cnalps.projetPiscine.service.PoolsService;
+import fr.cnalps.projetPiscine.model.Candidate;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -25,8 +26,12 @@ public class Pools {
     private String town;
     private Date startdate;
     private Date enddate;
-    @OneToMany
-    private List<Candidate> candidates = new ArrayList<Candidate>();
+
+    @ManyToMany
+    @JoinTable (name = "poolsHasCandidates",
+            joinColumns = @JoinColumn(name = "pools_id"),
+            inverseJoinColumns = @JoinColumn(name = "candidate_id") )
+    private List<Candidate> poolsHasCandidates;
 
     public Pools(int id, String name, String town, Date startdate, Date enddate) {
         this.id = id;
@@ -43,12 +48,4 @@ public class Pools {
 
     }
 
-    @JoinTable(
-            name = "pool_has_candidates",
-            joinColumns = @JoinColumn (name = "pools_id"),
-            inverseJoinColumns = @JoinColumn(name = "candidates_id")
-    )
-
-    @OneToMany(mappedBy = "pool", cascade = CascadeType.ALL)
-    private List<Candidate> candidate = new ArrayList<>();
 }

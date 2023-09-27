@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Classe service de piscines
@@ -60,23 +61,22 @@ public class PoolsService {
 
     public void addCandidateToPool(int poolId, int candidateId) {
 
+
         Optional<Pools> pool = poolsRepository.findById(poolId);
         Optional<Candidate> candidate = candidateRepository.findById(candidateId);
 
-        if (pool.isPresent() && candidate.isPresent()) {
-            List<Candidate> candidates = pool.get().getCandidates();
-            candidates.add(candidate.get());
-            poolsRepository.save(pool.get());
+        if(poolsRepository.existsById(poolId) && candidateRepository.findById(candidateId).isPresent()){
+            Pools pools = poolsRepository.existsById(poolId); // mettre le add pool
         }
     }
-    public void deleteCandidateFromPool(int poolId, int candidateId) {
-        Optional<Pools> pool = poolsRepository.findById(poolId);
-        Optional<Candidate> candidate = candidateRepository.findById(candidateId);
-
-        if (pool.isPresent() && candidate.isPresent()) {
-            List<Candidate> candidates = pool.get().getCandidates();
-            candidates.remove(candidate.get());
-            poolsRepository.save(pool.get());
-        }
-    }
+//    public void deleteCandidateFromPool(int poolId, int candidateId) {
+//        Optional<Pools> pool = poolsRepository.findById(poolId);
+//        Optional<Candidate> candidate = candidateRepository.findById(candidateId);
+//
+//        if (pool.isPresent() && candidate.isPresent()) {
+//            List<Candidate> candidates = pool.get().getCandidates();
+//            candidates.remove(candidate.get());
+//            poolsRepository.save(pool.get());
+//        }
+//    }
 }

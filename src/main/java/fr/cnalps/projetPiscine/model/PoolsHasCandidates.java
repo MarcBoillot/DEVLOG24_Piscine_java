@@ -15,6 +15,6 @@ public class PoolsHasCandidates {
     private Pools pools;
 
     @ManyToOne
-    @JoinColumn(name = "candidates_id")
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 }
