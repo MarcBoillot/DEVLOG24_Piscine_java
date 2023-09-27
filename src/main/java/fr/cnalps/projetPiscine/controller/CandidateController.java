@@ -29,13 +29,13 @@ public class CandidateController {
         return candidateService.save(candidate);
     }
 
-    @DeleteMapping(value = "/delete")
-    public @ResponseBody String removeCandidate(@RequestBody Candidate candidate){
-        candidateService.delete(candidate);
+    @DeleteMapping("/{id}")
+    public @ResponseBody String removeCandidate(@PathVariable(value = "id") int id) {
+        candidateService.delete(id);
         return "Successfully deleted";
     }
 
-    @PutMapping(value = "/modify")
+    @PutMapping(value = "/{id}")
     public @ResponseBody String modifyCandidate(@RequestBody Candidate candidate){
         candidateService.update(candidate);
         return "successfully modify";

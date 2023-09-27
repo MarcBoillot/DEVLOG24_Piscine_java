@@ -17,11 +17,6 @@ public class UsersService {
 
     private final UsersRepository usersRepository;
 
-    /**
-     * Constructor for ObserverService.
-     *
-     * @param observerRepository The repository for accessing Observer object from the database.
-     */
     @Autowired
     public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
