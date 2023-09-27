@@ -1,9 +1,13 @@
 package fr.cnalps.projetPiscine.service;
 
+import fr.cnalps.projetPiscine.model.Candidate;
 import fr.cnalps.projetPiscine.model.Pools;
+import fr.cnalps.projetPiscine.repository.CandidateRepository;
 import fr.cnalps.projetPiscine.repository.PoolsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,6 +20,7 @@ public class PoolsService {
      */
     @Autowired
     private PoolsRepository poolsRepository;
+    private CandidateRepository candidateRepository;
 
     /**
      * Fonction de création d'une piscine
@@ -51,5 +56,27 @@ public class PoolsService {
      */
     public void updatePool(Pools pool){
         poolsRepository.save(pool);
+    }
+
+    public void addCandidateToPool(int poolId, int candidateId) {
+
+        Optional<Pools> pool = poolsRepository.findById(poolId);
+        Optional<Candidate> candidate = candidateRepository.findById(candidateId);
+
+        if (pool.isPresent() && candidate.isPresent()) {
+            List<Candidate> candidates = pool.get().getCandidates();
+            candidates.add(candidate.get());
+            poolsRepository.save(pool.get());
+        }
+    }
+    public void deleteCandidateFromPool(int poolId, int candidateId) {
+        Optional<Pools> pool = poolsRepository.findById(poolId);
+        Optional<Candidate> candidate = candidateRepository.findById(candidateId);
+
+        if (pool.isPresent() && candidate.isPresent()) {
+            List<Candidate> candidates = pool.get().getCandidates();
+            candidates.remove(candidate.get());
+            poolsRepository.save(pool.get());
+        }
     }
 }

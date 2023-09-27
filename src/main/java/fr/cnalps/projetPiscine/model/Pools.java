@@ -1,19 +1,22 @@
 package fr.cnalps.projetPiscine.model;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+import fr.cnalps.projetPiscine.repository.PoolsRepository;
+import fr.cnalps.projetPiscine.service.PoolsService;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Classe pour créer les piscines
  */
 @Data
 @Entity
+@Getter
+@Setter
 public class Pools {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,4 +43,12 @@ public class Pools {
 
     }
 
+    @JoinTable(
+            name = "pool_has_candidates",
+            joinColumns = @JoinColumn (name = "pools_id"),
+            inverseJoinColumns = @JoinColumn(name = "candidates_id")
+    )
+
+    @OneToMany(mappedBy = "pool", cascade = CascadeType.ALL)
+    private List<Candidate> candidate = new ArrayList<>();
 }

@@ -2,8 +2,15 @@ package fr.cnalps.projetPiscine.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
+@Setter
 @Entity
 public class Candidate {
     @Id
@@ -32,4 +39,11 @@ public class Candidate {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @ManyToMany(mappedBy = "Candidates")
+    private List<Pools> pools = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "pool_id")
+    private Pools pool;
 }
