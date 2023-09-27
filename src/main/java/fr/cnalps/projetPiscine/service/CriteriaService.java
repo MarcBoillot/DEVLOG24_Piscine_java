@@ -17,4 +17,8 @@ public class CriteriaService {
     public CriteriaService(CriteriaRepository criteriaRepository) {
         this.criteriaRepository = criteriaRepository;
     }
+
+    public Criteria createCriteria (Criteria criteria){
+        return criteriaRepository.save(criteria);
+    }
 }

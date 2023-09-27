@@ -1,5 +1,6 @@
 package fr.cnalps.projetPiscine.controller;
 
+import fr.cnalps.projetPiscine.model.Category;
 import fr.cnalps.projetPiscine.model.Criteria;
 import fr.cnalps.projetPiscine.service.CriteriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,10 @@ public class CriteriaController {
 
     public CriteriaController(CriteriaService service) {
         this.service = service;
+    }
+
+    @PostMapping
+    public Criteria createCriteria(@RequestBody Criteria criteria) {
+        return service.createCriteria(criteria);
     }
 }
