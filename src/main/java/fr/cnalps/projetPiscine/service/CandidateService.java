@@ -24,8 +24,8 @@ public class CandidateService {
         return candidateRepository.save(candidate);
     }
 
-    public void delete(Candidate candidate){
-         candidateRepository.delete(candidate);
+    public void delete(int candidate){
+         candidateRepository.deleteById(candidate);
     }
 
     public void update(Candidate candidate){
