@@ -30,8 +30,12 @@ public class Candidate {
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
     private List<Pools> candidateInPools;
 
+    /**
+     * Establishes a many-to-one relationship between this candidate and a group.
+     * The foreign key column used in the database table for this relationship is 'groupgandidate_id'.
+     */
     @ManyToOne
-    @JoinColumn(name = "GroupCandidate_id", nullable = false)
+    @JoinColumn(name = "groupgandidate_id", nullable = false)
     private GroupCandidate groupcandidate;
 
     public void setId(Integer id) {
