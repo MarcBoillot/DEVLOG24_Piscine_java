@@ -17,4 +17,9 @@ public class GroupCandidateController {
     public GroupCandidateController(GroupCandidateService service) {
         this.service = service;
     }
+
+    @PostMapping
+    public GroupCandidate createCriteria(@RequestBody GroupCandidate groupCandidate) {
+        return service.createGroupCandidate(groupCandidate);
+    }
 }

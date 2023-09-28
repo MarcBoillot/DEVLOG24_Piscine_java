@@ -22,4 +22,8 @@ public class GroupCandidateService {
     public GroupCandidateService(GroupCandidateRepository groupCandidateRepository) {
         this.groupCandidateRepository = groupCandidateRepository;
     }
+
+    public GroupCandidate createGroupCandidate (GroupCandidate groupCandidate){
+        return groupCandidateRepository.save(groupCandidate);
+    }
 }
