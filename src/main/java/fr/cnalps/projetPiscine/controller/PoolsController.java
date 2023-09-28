@@ -74,9 +74,9 @@ public class PoolsController {
         poolsService.addCandidateToPool(poolId, candidate_id);
         return "Candidat ajouté à la piscine";
     }
-//    @DeleteMapping("/{poolId}/candidate/{candidateId}")
-//    public @ResponseBody String DeleteCandidateFromPool(@PathVariable ("poolId") int poolId, @PathVariable ("CandidateId") int candidate_id){
-//        poolsService.deleteCandidateFromPool(poolId, candidate_id);
-//        return "Candidat retiré de la piscine";
-//    }
+    @DeleteMapping("/{poolId}/candidate/{candidateId}")
+    public @ResponseBody String DeleteCandidateFromPool(@PathVariable("poolId") int poolId, @PathVariable("candidateId") int candidate_id){
+        poolsService.deleteCandidateFromPool(poolId, candidate_id);
+        return "Candidat retiré de la piscine";
+    }
 }
