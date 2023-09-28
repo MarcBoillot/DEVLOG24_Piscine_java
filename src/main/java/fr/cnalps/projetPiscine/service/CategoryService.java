@@ -76,7 +76,7 @@ public class CategoryService {
      *
      * @param id The ID of the Category to be deleted.
      */
-    public void deleteObserver(int id) {
+    public void deleteCategory(int id) {
         if (categoryRepository.existsById(id)) {
             categoryRepository.deleteById(id);
         }
