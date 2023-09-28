@@ -21,6 +21,7 @@ public class PoolsService {
      */
     @Autowired
     private PoolsRepository poolsRepository;
+    @Autowired
     private CandidateRepository candidateRepository;
 
     /**
@@ -86,15 +87,15 @@ public class PoolsService {
             candidateRepository.save(candidate);
         }
     }
-//    public void deleteCandidateFromPool(int poolId, int candidateId) {
-//        Optional<Pools> pool = poolsRepository.findById(poolId);
-//        Optional<Candidate> candidate = candidateRepository.findById(candidateId);
-//
-//        if (pool.isPresent() && candidate.isPresent()) {
-//            List<Candidate> candidates = pool.get().getCandidates();
-//            candidates.remove(candidate.get());
-//            poolsRepository.save(pool.get());
-//        }
-//    }
+    public void deleteCandidateFromPool(int poolId, int candidateId) {
+
+        Optional<Pools> pool = poolsRepository.findById(poolId);
+        Optional<Candidate> candidate = candidateRepository.findById(candidateId);
+
+        if (pool.isPresent() && candidate.isPresent()) {
+            pool.get().getPoolsHasCandidates().remove(candidate.get());
+            poolsRepository.save(pool.get());
+        }
+    }
 
 }
