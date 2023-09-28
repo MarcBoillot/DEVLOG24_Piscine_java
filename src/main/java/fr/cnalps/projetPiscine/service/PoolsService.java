@@ -21,6 +21,7 @@ public class PoolsService {
      */
     @Autowired
     private PoolsRepository poolsRepository;
+    @Autowired
     private CandidateRepository candidateRepository;
 
     /**
