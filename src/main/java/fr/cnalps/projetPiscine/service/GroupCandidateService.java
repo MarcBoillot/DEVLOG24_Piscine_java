@@ -26,4 +26,12 @@ public class GroupCandidateService {
     public GroupCandidate createGroupCandidate (GroupCandidate groupCandidate){
         return groupCandidateRepository.save(groupCandidate);
     }
+
+    public List<GroupCandidate> getAllGroupCandidate() {
+        return (List<GroupCandidate>) groupCandidateRepository.findAll();
+    }
+
+    public GroupCandidate getGroupCandidateById(int id) {
+        return groupCandidateRepository.findById(id).orElse(null);
+    }
 }

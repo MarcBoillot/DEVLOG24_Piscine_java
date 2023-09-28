@@ -19,7 +19,17 @@ public class GroupCandidateController {
     }
 
     @PostMapping
-    public GroupCandidate createCriteria(@RequestBody GroupCandidate groupCandidate) {
+    public GroupCandidate createGroupCandidate(@RequestBody GroupCandidate groupCandidate) {
         return service.createGroupCandidate(groupCandidate);
+    }
+
+    @GetMapping
+    public List<GroupCandidate> getAllGroupCandidate(){
+        return this.service.getAllGroupCandidate();
+    }
+
+    @GetMapping("/{id}")
+    public GroupCandidate getGroupCandidateById (@PathVariable(name = "id") int id) {
+        return this.service.getGroupCandidateById(id);
     }
 }
