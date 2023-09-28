@@ -34,4 +34,12 @@ public class GroupCandidateService {
     public GroupCandidate getGroupCandidateById(int id) {
         return groupCandidateRepository.findById(id).orElse(null);
     }
+
+    public GroupCandidate updateGroupCandidate(int id, GroupCandidate groupCandidate) {
+        if (groupCandidateRepository.existsById(id)) {
+            groupCandidate.setId(id);
+            return groupCandidateRepository.save(groupCandidate);
+        }
+        return null;
+    }
 }

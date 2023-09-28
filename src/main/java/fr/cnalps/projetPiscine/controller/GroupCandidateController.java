@@ -32,4 +32,9 @@ public class GroupCandidateController {
     public GroupCandidate getGroupCandidateById (@PathVariable(name = "id") int id) {
         return this.service.getGroupCandidateById(id);
     }
+
+    @PutMapping("/{id}")
+    public GroupCandidate updateGroupCandidate(@PathVariable int id, @RequestBody GroupCandidate groupCandidate) {
+        return service.updateGroupCandidate(id, groupCandidate);
+    }
 }
