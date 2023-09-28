@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 public class Candidate {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, length = 100)
@@ -29,6 +29,10 @@ public class Candidate {
             joinColumns = @JoinColumn(name = "candidate_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
     private List<Pools> candidateInPools;
+
+    @ManyToOne
+    @JoinColumn(name = "GroupCandidate_id", nullable = false)
+    private GroupCandidate groupcandidate;
 
     public void setId(Integer id) {
         this.id = id;

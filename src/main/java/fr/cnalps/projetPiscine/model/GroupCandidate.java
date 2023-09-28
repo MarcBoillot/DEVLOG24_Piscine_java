@@ -19,4 +19,7 @@ public class GroupCandidate {
 
     @Column(nullable = false, length = 100)
     private String title;
+
+    @OneToMany(targetEntity =Candidate.class, mappedBy = "groupcandidate", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Candidate> candidates = new ArrayList<>();
 }
