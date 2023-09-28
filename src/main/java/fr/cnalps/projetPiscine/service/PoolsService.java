@@ -25,6 +25,7 @@ public class PoolsService {
 
     /**
      * Fonction de création d'une piscine
+     *
      * @param pool la piscine
      * @return les nouvelles données
      */
@@ -34,39 +35,55 @@ public class PoolsService {
 
     /**
      * Fonction afficher les piscines selon leur id
+     *
      * @param id id de la piscine
      * @return la piscine avec l'id dorrecpondant
      */
-    public Optional<Pools> getPoolsById(final int id) {return poolsRepository.findById(id);}
+    public Optional<Pools> getPoolsById(final int id) {
+        return poolsRepository.findById(id);
+    }
 
     /**
      * Fonction qui affiche toutes les piscines
+     *
      * @return toutes les piscines
      */
-    public Iterable<Pools> getPools() {return poolsRepository.findAll();}
+    public Iterable<Pools> getPools() {
+        return poolsRepository.findAll();
+    }
 
     /**
      * Fonction de suppression de piscine
+     *
      * @param pools piscines
      */
-    public void deletePool(int pools) {poolsRepository.deleteById(pools);}
+    public void deletePool(int pools) {
+        poolsRepository.deleteById(pools);
+    }
 
     /**
      * Fonction pour mettre à jour les données d'une piscine
+     *
      * @param pool la piscine
      */
-    public void updatePool(Pools pool){
+    public void updatePool(Pools pool) {
         poolsRepository.save(pool);
     }
 
     public void addCandidateToPool(int poolId, int candidateId) {
 
+        Optional<Pools> poolOptional = poolsRepository.findById(poolId);
+        Optional<Candidate> candidateOptional = candidateRepository.findById(candidateId);
 
-        Optional<Pools> pool = poolsRepository.findById(poolId);
-        Optional<Candidate> candidate = candidateRepository.findById(candidateId);
+        if (poolOptional.isPresent() && candidateOptional.isPresent()) {
+            Pools pool = poolOptional.get();
+            Candidate candidate = candidateOptional.get();
 
-        if(poolsRepository.existsById(poolId) && candidateRepository.findById(candidateId).isPresent()){
-            Pools pools = poolsRepository.existsById(poolId); // mettre le add pool
+            List<Pools> candidateInPools = candidate.getCandidateInPools();
+            candidateInPools.add(pool);
+            candidate.setCandidateInPools(candidateInPools);
+
+            candidateRepository.save(candidate);
         }
     }
 //    public void deleteCandidateFromPool(int poolId, int candidateId) {
@@ -79,4 +96,5 @@ public class PoolsService {
 //            poolsRepository.save(pool.get());
 //        }
 //    }
+
 }
