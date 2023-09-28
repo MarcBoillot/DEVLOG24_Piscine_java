@@ -1,5 +1,7 @@
 package fr.cnalps.projetPiscine.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,11 +26,14 @@ public class Candidate {
     @Column(nullable = false, length = 100)
     private String email;
 
+
     @ManyToMany
     @JoinTable (name = "poolsHasCandidates",
             joinColumns = @JoinColumn(name = "candidate_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
+    @JsonManagedReference
     private List<Pools> candidateInPools;
+    //Set <Pools> pools;
 
     public void setId(Integer id) {
         this.id = id;

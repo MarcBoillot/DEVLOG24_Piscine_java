@@ -1,5 +1,6 @@
 package fr.cnalps.projetPiscine.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,6 +53,7 @@ public class Category {
     @JoinTable (name = "poolsHasCategories",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
+    @JsonManagedReference
     private List<Pools> poolsHasCategories;
 
 }

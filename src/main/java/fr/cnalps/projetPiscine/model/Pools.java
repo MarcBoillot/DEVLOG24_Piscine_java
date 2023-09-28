@@ -1,6 +1,8 @@
 package fr.cnalps.projetPiscine.model;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import fr.cnalps.projetPiscine.repository.PoolsRepository;
 import fr.cnalps.projetPiscine.service.PoolsService;
 import fr.cnalps.projetPiscine.model.Candidate;
@@ -31,12 +33,15 @@ public class Pools {
     @JoinTable (name = "poolsHasCandidates",
             joinColumns = @JoinColumn(name = "pools_id"),
             inverseJoinColumns = @JoinColumn(name = "candidate_id") )
+    @JsonBackReference
+    //Set<Candidate> candidates;
     private List<Candidate> poolsHasCandidates;
 
     @ManyToMany
     @JoinTable (name = "poolsHasCategories",
             joinColumns = @JoinColumn (name = "pools_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
+    //Set<Category> categories;
     private List<Category> poolsHasCategories;
 
     public Pools(int id, String name, String town, Date startdate, Date enddate) {
