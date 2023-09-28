@@ -48,4 +48,10 @@ public class Category {
     @OneToMany(targetEntity =Criteria.class, mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Criteria> criterias = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable (name = "poolsHasCategories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "pools_id") )
+    private List<Pools> poolsHasCategories;
+
 }

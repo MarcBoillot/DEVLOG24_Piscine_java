@@ -70,13 +70,24 @@ public class PoolsController {
     }
 
     @PostMapping("/{poolId}/candidate/{candidateId}")
-    public @ResponseBody String addCandidateToPool(@PathVariable("poolId") int poolId, @PathVariable("candidateId") int candidate_id){
-        poolsService.addCandidateToPool(poolId, candidate_id);
+    public @ResponseBody String addCandidateToPool(@PathVariable("poolId") int poolId, @PathVariable("candidateId") int candidateId){
+        poolsService.addCandidateToPool(poolId, candidateId);
         return "Candidat ajouté à la piscine";
     }
     @DeleteMapping("/{poolId}/candidate/{candidateId}")
     public @ResponseBody String DeleteCandidateFromPool(@PathVariable("poolId") int poolId, @PathVariable("candidateId") int candidate_id){
         poolsService.deleteCandidateFromPool(poolId, candidate_id);
+        return "Candidat retiré de la piscine";
+    }
+
+    @PostMapping("/{poolId}/category/{categoryId}")
+    public @ResponseBody String addCategoryToPool(@PathVariable("poolId") int poolId, @PathVariable("categoryId") int categoryId){
+        poolsService.addCategoryToPool(poolId, categoryId);
+        return "Catégorie ajoutée à la piscine";
+    }
+    @DeleteMapping("/{poolId}/category/{categoryId}")
+    public @ResponseBody String DeleteCategoryFromPool(@PathVariable("poolId") int poolId, @PathVariable("categoryId") int categoryId){
+        poolsService.deleteCategoryFromPool(poolId, categoryId);
         return "Candidat retiré de la piscine";
     }
 }

@@ -33,6 +33,12 @@ public class Pools {
             inverseJoinColumns = @JoinColumn(name = "candidate_id") )
     private List<Candidate> poolsHasCandidates;
 
+    @ManyToMany
+    @JoinTable (name = "poolsHasCategories",
+            joinColumns = @JoinColumn (name = "pools_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<Category> poolsHasCategories;
+
     public Pools(int id, String name, String town, Date startdate, Date enddate) {
         this.id = id;
         this.name = name;

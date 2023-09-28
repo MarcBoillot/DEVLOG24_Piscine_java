@@ -108,7 +108,22 @@ public class PoolsService {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
 
         if (poolsOptional.isPresent() && categoryOptional.isPresent()){
+            Pools pool = poolsOptional.get();
+            Category category = categoryOptional.get();
+            List<Pools> categoryInPools = category.getPoolsHasCategories();
+            categoryInPools.add(pool);
+            category.setPoolsHasCategories(categoryInPools);
+            categoryRepository.save(category);
+        }
+    }
+    public void deleteCategoryFromPool(int poolId, int categoryId) {
 
+        Optional<Pools> pool = poolsRepository.findById(poolId);
+        Optional<Category> category = categoryRepository.findById(categoryId);
+
+        if (pool.isPresent() && category.isPresent()) {
+            pool.get().getPoolsHasCategories().remove(category.get());
+            poolsRepository.save(pool.get());
         }
     }
 
