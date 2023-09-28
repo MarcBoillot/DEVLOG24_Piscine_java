@@ -37,4 +37,9 @@ public class GroupCandidateController {
     public GroupCandidate updateGroupCandidate(@PathVariable int id, @RequestBody GroupCandidate groupCandidate) {
         return service.updateGroupCandidate(id, groupCandidate);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteGroupCandidate(@PathVariable int id) {
+        service.deleteGroupCandidate(id);
+    }
 }

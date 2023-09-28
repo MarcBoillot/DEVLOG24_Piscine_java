@@ -42,4 +42,10 @@ public class GroupCandidateService {
         }
         return null;
     }
+
+    public void deleteGroupCandidate(int id) {
+        if (groupCandidateRepository.existsById(id)) {
+            groupCandidateRepository.deleteById(id);
+        }
+    }
 }
