@@ -1,8 +1,6 @@
 package fr.cnalps.projetPiscine.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +16,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Category {
 
     /**
@@ -52,7 +53,7 @@ public class Category {
     private List<Criteria> criterias = new ArrayList<>();
 
     @ManyToMany
-    @JsonBackReference
+//    @JsonBackReference
     @JoinTable (name = "poolsHasCategories",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )

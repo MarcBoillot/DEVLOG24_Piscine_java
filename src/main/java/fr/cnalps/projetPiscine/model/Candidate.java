@@ -1,19 +1,21 @@
 package fr.cnalps.projetPiscine.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @Getter
 @Setter
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,13 +30,21 @@ public class Candidate {
 
 
     @ManyToMany
-    @JsonBackReference
+//    @JsonBackReference
     @JoinTable (name = "poolsHasCandidates",
             joinColumns = @JoinColumn(name = "candidate_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
 
     private List<Pools> candidateInPools;
-    //Set <Pools> pools;
+
+    /**
+     * Establishes a many-to-one relationship between this candidate and a group.
+     * The foreign key column used in the database table for this relationship is 'groupgandidate_id'.
+     */
+    @ManyToOne
+//    @JsonBackReference
+    @JoinColumn(name = "groupgandidate_id")
+    private GroupCandidate groupcandidate;
 
     public void setId(Integer id) {
         this.id = id;
