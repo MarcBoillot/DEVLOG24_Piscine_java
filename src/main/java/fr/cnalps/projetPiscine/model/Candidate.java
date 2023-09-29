@@ -1,5 +1,6 @@
 package fr.cnalps.projetPiscine.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +36,7 @@ public class Candidate {
      * The foreign key column used in the database table for this relationship is 'groupgandidate_id'.
      */
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "groupgandidate_id", nullable = false)
     private GroupCandidate groupcandidate;
 
