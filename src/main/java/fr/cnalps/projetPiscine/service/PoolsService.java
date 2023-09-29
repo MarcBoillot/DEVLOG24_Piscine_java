@@ -76,6 +76,11 @@ public class PoolsService {
         poolsRepository.save(pool);
     }
 
+    /**
+     * Add a candidate to a pool service function
+     * @param poolId pool target id
+     * @param candidateId candidate target id
+     */
     public void addCandidateToPool(int poolId, int candidateId) {
 
         Optional<Pools> poolOptional = poolsRepository.findById(poolId);
@@ -92,6 +97,12 @@ public class PoolsService {
             candidateRepository.save(candidate);
         }
     }
+
+    /**
+     * Delete a candidate from a pool service function
+     * @param poolId pool target id
+     * @param candidateId candidate target id
+     */
     public void deleteCandidateFromPool(int poolId, int candidateId) {
 
         Optional<Pools> pool = poolsRepository.findById(poolId);
@@ -103,6 +114,11 @@ public class PoolsService {
         }
     }
 
+    /**
+     * Add a category to a pool service function
+     * @param poolId pool target id
+     * @param categoryId category target id
+     */
     public void addCategoryToPool (int poolId, int categoryId){
         Optional<Pools> poolsOptional = poolsRepository.findById(poolId);
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
@@ -116,6 +132,12 @@ public class PoolsService {
             categoryRepository.save(category);
         }
     }
+
+    /**
+     * Delete a category from a pool service function
+     * @param poolId pool target id
+     * @param categoryId category target id
+     */
     public void deleteCategoryFromPool(int poolId, int categoryId) {
 
         Optional<Pools> pool = poolsRepository.findById(poolId);

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+/**
+ * Classe de la table d'association pools / candidates
+ */
 @Entity
 @Getter
 public class PoolsHasCandidates {

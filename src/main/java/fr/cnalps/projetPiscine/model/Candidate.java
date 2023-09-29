@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
 
-
+/**
+ * Classe des candidats
+ */
 @Getter
 @Setter
 @Entity
