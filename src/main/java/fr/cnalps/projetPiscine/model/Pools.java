@@ -1,6 +1,7 @@
 package fr.cnalps.projetPiscine.model;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import fr.cnalps.projetPiscine.repository.PoolsRepository;
 import fr.cnalps.projetPiscine.service.PoolsService;
 import fr.cnalps.projetPiscine.model.Candidate;
@@ -32,6 +33,10 @@ public class Pools {
             joinColumns = @JoinColumn(name = "pools_id"),
             inverseJoinColumns = @JoinColumn(name = "candidate_id") )
     private List<Candidate> poolsHasCandidates;
+
+    @OneToMany(targetEntity =GroupCandidate.class, mappedBy = "pool", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<GroupCandidate> groupCandidates = new ArrayList<>();
 
     public Pools(int id, String name, String town, Date startdate, Date enddate) {
         this.id = id;

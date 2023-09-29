@@ -1,5 +1,7 @@
 package fr.cnalps.projetPiscine.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,5 +39,11 @@ public class GroupCandidate {
      * Any changes made to the group instance would also cascade to the associated Candidate instances.
      */
     @OneToMany(targetEntity =Candidate.class, mappedBy = "groupcandidate", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Candidate> candidates = new ArrayList<>();
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "pool_id", nullable = false)
+    private Pools pool;
 }
