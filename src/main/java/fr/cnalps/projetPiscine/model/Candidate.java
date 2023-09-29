@@ -28,10 +28,11 @@ public class Candidate {
 
 
     @ManyToMany
+    @JsonBackReference
     @JoinTable (name = "poolsHasCandidates",
             joinColumns = @JoinColumn(name = "candidate_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
-    @JsonManagedReference
+
     private List<Pools> candidateInPools;
     //Set <Pools> pools;
 

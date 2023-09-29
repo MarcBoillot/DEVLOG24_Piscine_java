@@ -1,5 +1,7 @@
 package fr.cnalps.projetPiscine.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -50,10 +52,10 @@ public class Category {
     private List<Criteria> criterias = new ArrayList<>();
 
     @ManyToMany
+    @JsonBackReference
     @JoinTable (name = "poolsHasCategories",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
-    @JsonManagedReference
     private List<Pools> poolsHasCategories;
 
 }

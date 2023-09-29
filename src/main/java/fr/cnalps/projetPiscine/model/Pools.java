@@ -30,17 +30,21 @@ public class Pools {
     private Date enddate;
 
     @ManyToMany
+    @JsonManagedReference
     @JoinTable (name = "poolsHasCandidates",
             joinColumns = @JoinColumn(name = "pools_id"),
             inverseJoinColumns = @JoinColumn(name = "candidate_id") )
-    @JsonBackReference
     //Set<Candidate> candidates;
     private List<Candidate> poolsHasCandidates;
 
     @ManyToMany
+    @JsonManagedReference
     @JoinTable (name = "poolsHasCategories",
             joinColumns = @JoinColumn (name = "pools_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
+
+
+
     //Set<Category> categories;
     private List<Category> poolsHasCategories;
 
