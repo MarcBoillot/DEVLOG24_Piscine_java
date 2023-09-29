@@ -1,8 +1,11 @@
 package fr.cnalps.projetPiscine.service;
 
 import fr.cnalps.projetPiscine.model.Candidate;
+import fr.cnalps.projetPiscine.model.Category;
+import fr.cnalps.projetPiscine.model.Criteria;
 import fr.cnalps.projetPiscine.model.Pools;
 import fr.cnalps.projetPiscine.repository.CandidateRepository;
+import fr.cnalps.projetPiscine.repository.CategoryRepository;
 import fr.cnalps.projetPiscine.repository.PoolsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,8 @@ public class PoolsService {
     private PoolsRepository poolsRepository;
     @Autowired
     private CandidateRepository candidateRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     /**
      * Fonction de création d'une piscine
@@ -94,6 +99,30 @@ public class PoolsService {
 
         if (pool.isPresent() && candidate.isPresent()) {
             pool.get().getPoolsHasCandidates().remove(candidate.get());
+            poolsRepository.save(pool.get());
+        }
+    }
+
+    public void addCategoryToPool (int poolId, int categoryId){
+        Optional<Pools> poolsOptional = poolsRepository.findById(poolId);
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+
+        if (poolsOptional.isPresent() && categoryOptional.isPresent()){
+            Pools pool = poolsOptional.get();
+            Category category = categoryOptional.get();
+            List<Pools> categoryInPools = category.getPoolsHasCategories();
+            categoryInPools.add(pool);
+            category.setPoolsHasCategories(categoryInPools);
+            categoryRepository.save(category);
+        }
+    }
+    public void deleteCategoryFromPool(int poolId, int categoryId) {
+
+        Optional<Pools> pool = poolsRepository.findById(poolId);
+        Optional<Category> category = categoryRepository.findById(categoryId);
+
+        if (pool.isPresent() && category.isPresent()) {
+            pool.get().getPoolsHasCategories().remove(category.get());
             poolsRepository.save(pool.get());
         }
     }

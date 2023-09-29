@@ -1,16 +1,14 @@
 package fr.cnalps.projetPiscine.model;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import fr.cnalps.projetPiscine.repository.PoolsRepository;
-import fr.cnalps.projetPiscine.service.PoolsService;
-import fr.cnalps.projetPiscine.model.Candidate;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.text.SimpleDateFormat;
 
 /**
  * Classe pour créer les piscines
@@ -19,6 +17,9 @@ import java.text.SimpleDateFormat;
 @Entity
 @Getter
 @Setter
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Pools {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,13 +30,21 @@ public class Pools {
     private Date enddate;
 
     @ManyToMany
+//    @JsonManagedReference
     @JoinTable (name = "poolsHasCandidates",
             joinColumns = @JoinColumn(name = "pools_id"),
             inverseJoinColumns = @JoinColumn(name = "candidate_id") )
     private List<Candidate> poolsHasCandidates;
 
+    @ManyToMany
+//    @JsonManagedReference
+    @JoinTable (name = "poolsHasCategories",
+            joinColumns = @JoinColumn (name = "pools_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<Category> poolsHasCategories;
+
     @OneToMany(targetEntity =GroupCandidate.class, mappedBy = "pool", cascade = CascadeType.ALL)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<GroupCandidate> groupCandidates = new ArrayList<>();
 
     public Pools(int id, String name, String town, Date startdate, Date enddate) {

@@ -1,5 +1,6 @@
 package fr.cnalps.projetPiscine.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -11,10 +12,12 @@ public class PoolsHasCandidates {
     private int id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "pools_id")
     private Pools pools;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 }

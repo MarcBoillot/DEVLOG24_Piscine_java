@@ -1,7 +1,9 @@
 package fr.cnalps.projetPiscine.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +19,9 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "GROUPCANDIDATE")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class GroupCandidate {
 
     /**
@@ -39,11 +44,11 @@ public class GroupCandidate {
      * Any changes made to the group instance would also cascade to the associated Candidate instances.
      */
     @OneToMany(targetEntity =Candidate.class, mappedBy = "groupcandidate", cascade = CascadeType.ALL)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Candidate> candidates = new ArrayList<>();
 
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
     @JoinColumn(name = "pool_id", nullable = false)
     private Pools pool;
 }

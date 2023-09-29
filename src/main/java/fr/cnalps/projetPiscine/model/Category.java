@@ -1,5 +1,6 @@
 package fr.cnalps.projetPiscine.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Category {
 
     /**
@@ -47,5 +51,12 @@ public class Category {
      */
     @OneToMany(targetEntity =Criteria.class, mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Criteria> criterias = new ArrayList<>();
+
+    @ManyToMany
+//    @JsonBackReference
+    @JoinTable (name = "poolsHasCategories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "pools_id") )
+    private List<Pools> poolsHasCategories;
 
 }
