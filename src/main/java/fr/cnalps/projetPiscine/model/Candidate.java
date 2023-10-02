@@ -30,6 +30,16 @@ public class Candidate {
     @Column(nullable = false, length = 100)
     private String email;
 
+    public Candidate() {
+
+    }
+    public Candidate (int id, String firstname, String lastname, String email){
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
+
 
     @ManyToMany
 //    @JsonBackReference
