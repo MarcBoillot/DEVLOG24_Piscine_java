@@ -57,9 +57,9 @@ public class Candidate {
      * Establishes a many-to-one relationship between this candidate and a group.
      * The foreign key column used in the database table for this relationship is 'groupgandidate_id'.
      */
+
     @ManyToOne
-//    @JsonBackReference
-    @JoinColumn(name = "groupgandidate_id")
+    @JoinColumn(name = "groupcandidate_id")
     private GroupCandidate groupcandidate;
 
     public void setId(Integer id) {
