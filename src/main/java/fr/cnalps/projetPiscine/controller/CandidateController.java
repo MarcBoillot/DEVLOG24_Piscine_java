@@ -12,7 +12,7 @@ import java.util.Optional;
  * Candidates Controller
  */
 @Controller
-@RequestMapping(path="candidate")
+@RequestMapping(path="/candidate")
 public class CandidateController {
     @Autowired
     private CandidateService candidateService;
