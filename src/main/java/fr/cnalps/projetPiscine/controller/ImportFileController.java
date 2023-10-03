@@ -5,10 +5,7 @@ import fr.cnalps.projetPiscine.service.ImportFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -16,11 +13,16 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/candidate")
 public class ImportFileController {
+
     @Autowired
-    private ImportFileService importFileService;
+    private final ImportFileService service;
+
+    public ImportFileController(ImportFileService service) {
+        this.service = service;
+    }
 
     @PostMapping("/import")
-    public ResponseEntity<?> importFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> importFile(@RequestBody MultipartFile file) {
         Iterable<Candidate> candidates;
 
         try {
@@ -28,9 +30,9 @@ public class ImportFileController {
 
             if ("application/vnd.ms-excel".equals(contentType) ||
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet".equals(contentType)) {
-                candidates = ImportFileService.importFromExcel(file);
+                candidates = service.importFromExcel(file);
             } else if ("text/csv".equals(contentType)) {
-                candidates = ImportFileService.importFromCsv(file);
+                candidates = service.importFromCsv(file);
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Type de fichier non supporté");
             }

@@ -21,9 +21,13 @@ import java.util.List;
 public class ImportFileService {
 
     @Autowired
-    private static CandidateRepository candidateRepository;
+    private final CandidateRepository candidateRepository;
 
-    public static Iterable<Candidate> importFromExcel(MultipartFile file) throws IOException {
+    public ImportFileService(CandidateRepository candidateRepository) {
+        this.candidateRepository = candidateRepository;
+    }
+
+    public Iterable<Candidate> importFromExcel(MultipartFile file) throws IOException {
         List<Candidate> candidates = new ArrayList<>();
 
         try (Workbook workbook = WorkbookFactory.create(file.getInputStream())) {
@@ -38,6 +42,7 @@ public class ImportFileService {
 
                 candidate.setFirstname(currentRow.getCell(0).getStringCellValue());
                 candidate.setLastname(currentRow.getCell(1).getStringCellValue());
+                candidate.setEmail(currentRow.getCell(2).getStringCellValue().replaceAll("," , "."));
 
                 candidates.add(candidate);
             }
@@ -46,7 +51,7 @@ public class ImportFileService {
         return candidateRepository.saveAll(candidates);
     }
 
-    public static Iterable<Candidate> importFromCsv(MultipartFile file) throws IOException {
+    public Iterable<Candidate> importFromCsv(MultipartFile file) throws IOException {
         List<Candidate> candidates = new ArrayList<>();
         String line;
 
@@ -58,6 +63,7 @@ public class ImportFileService {
                 Candidate candidate = new Candidate();
                 candidate.setFirstname(values[0]);
                 candidate.setLastname(values[1]);
+                candidate.setEmail(values[2].replaceAll("," , "."));
 
                 candidates.add(candidate);
             }
