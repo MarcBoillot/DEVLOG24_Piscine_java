@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,12 +44,14 @@ public class Candidate {
 
 
     @ManyToMany
-//    @JsonBackReference
     @JoinTable (name = "poolsHasCandidates",
             joinColumns = @JoinColumn(name = "candidate_id"),
             inverseJoinColumns = @JoinColumn(name = "pools_id") )
 
     private List<Pools> candidateInPools;
+
+    @OneToMany(targetEntity = Images.class, mappedBy = "images", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Images> images = new ArrayList<>();
 
     /**
      * Establishes a many-to-one relationship between this candidate and a group.
