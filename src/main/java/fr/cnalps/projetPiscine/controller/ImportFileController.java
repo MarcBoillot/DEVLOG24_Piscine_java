@@ -1,6 +1,7 @@
 package fr.cnalps.projetPiscine.controller;
 
 import fr.cnalps.projetPiscine.model.Candidate;
+import fr.cnalps.projetPiscine.model.Users;
 import fr.cnalps.projetPiscine.service.ImportFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/candidate")
+@RequestMapping("/import")
 public class ImportFileController {
 
     @Autowired
@@ -21,8 +22,8 @@ public class ImportFileController {
         this.service = service;
     }
 
-    @PostMapping("/import")
-    public ResponseEntity<?> importFile(@RequestBody MultipartFile file) {
+    @PostMapping("/candidate")
+    public ResponseEntity<?> importCandidateFromFile(@RequestBody MultipartFile file) {
         Iterable<Candidate> candidates;
 
         try {
@@ -30,14 +31,36 @@ public class ImportFileController {
 
             if ("application/vnd.ms-excel".equals(contentType) ||
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet".equals(contentType)) {
-                candidates = service.importFromExcel(file);
+                candidates = service.importCandidateFromExcel(file);
             } else if ("text/csv".equals(contentType)) {
-                candidates = service.importFromCsv(file);
+                candidates = service.importCandidateFromCsv(file);
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Type de fichier non supporté");
             }
 
             return ResponseEntity.ok(candidates);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'importation: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/observer")
+    public ResponseEntity<?> importObserverFromFile(@RequestBody MultipartFile file) {
+        Iterable<Users> usersIterable;
+
+        try {
+            String contentType = file.getContentType();
+
+            if ("application/vnd.ms-excel".equals(contentType) ||
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet".equals(contentType)) {
+                usersIterable = service.importObserverFromExcel(file);
+            } else if ("text/csv".equals(contentType)) {
+                usersIterable = service.importObserverFromCsv(file);
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Type de fichier non supporté");
+            }
+
+            return ResponseEntity.ok(usersIterable);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'importation: " + e.getMessage());
         }

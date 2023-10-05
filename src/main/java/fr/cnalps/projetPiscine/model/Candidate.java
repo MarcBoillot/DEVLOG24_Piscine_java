@@ -50,8 +50,8 @@ public class Candidate {
 
     private List<Pools> candidateInPools;
 
-    @OneToMany(targetEntity = Images.class, mappedBy = "images", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Images> images = new ArrayList<>();
+//    @OneToMany(targetEntity = Images.class, mappedBy = "images", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Images> images = new ArrayList<>();
 
     /**
      * Establishes a many-to-one relationship between this candidate and a group.
