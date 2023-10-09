@@ -56,6 +56,7 @@ public class Candidate {
     /**
      * Establishes a many-to-one relationship between this candidate and a group.
      * The foreign key column used in the database table for this relationship is 'groupgandidate_id'.
+     * alex
      */
 
     @ManyToOne

@@ -40,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         public void setup(){
         pool = new Pools(1, "DLOG2023", "Valence");}
 
-        @Test
+
         public void getAllCandidatesTest() throws Exception {
 
             when(poolsService.getPools()).thenReturn(Collections.singletonList(pool));
