@@ -15,6 +15,7 @@ public class Criteria {
 
     /**
      * The unique identifier for the criteria.
+     * luigis
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
